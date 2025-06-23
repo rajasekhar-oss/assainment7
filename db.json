@@ -1,0 +1,43 @@
+{
+  "student": [
+    {
+      "id": "s1",
+      "name": "Rahul",
+      "age": 20,
+      "course": "Angular"
+    },
+    {
+      "id": "s2",
+      "name": "Priya",
+      "age": 22,
+      "course": "React"
+    },
+    {
+      "id": "s3",
+      "name": "Kiran",
+      "age": 21,
+      "course": "Vue"
+    }
+  ],
+  "teacher": [
+    {
+      "id": "",
+      "name": "add",
+      "age": 45
+    }
+  ],
+  "mentors": [
+    {
+      "id": "",
+      "name": "Anil",
+      "age": 23
+    }
+  ],
+  "techstaff": [
+    {
+      "id": "ts1",
+      "name": "Ravi",
+      "age": 40
+    }
+  ]
+}

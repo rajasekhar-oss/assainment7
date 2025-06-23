@@ -1,0 +1,23 @@
+<h3>Add New User</h3>
+<form (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required>
+  <input [(ngModel)]="newUser.age" name="age" type="number" placeholder="Age" required>
+  <button type="submit">{{ isEditMode ? 'Update' : 'Add' }}</button>
+</form>
+<ul>
+  
+</ul>
+<table>
+  <tr>
+    <th>s.no</th>
+    <th>teachr name</th>
+    <th>age</th>
+    <th>action</th>
+  </tr>
+<tr *ngFor="let user of teacher; let i = index">
+  <td>{{i+1}}</td>
+  <td>{{ user.name }} </td>
+    <td>{{ user.age }}</td>
+    <td><button (click)="editStudent(user)" class="btn btn-primary">edit</button><button (click)="delete(user.id)" class="btn btn-danger">delete</button></td>
+</tr>
+</table>

@@ -1,13 +1,4 @@
-<div class="bg-black d-flex justify-content-around p-1">
-  <button class="btn btn-secondary" (click)="students()">students</button>
-  <button class="btn btn-secondary" (click)="teachers()">teachers</button>
-  <button class="btn btn-secondary" (click)="mentors()">mentors</button>
-  <button class="btn btn-secondary" (click)="techstaff()">texhstaff</button>
-</div>
-
-
-
-<!-- <h3>Add New User</h3>
+<h3>Add New User</h3>
 <form (ngSubmit)="onSubmit()">
   <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required>
   <input [(ngModel)]="newUser.age" name="age" type="number" placeholder="Age" required>
@@ -19,7 +10,7 @@
 <table>
   <tr>
     <th>s.no</th>
-    <th>name</th>
+    <th>mentor name</th>
     <th>age</th>
     <th>action</th>
   </tr>
@@ -30,8 +21,3 @@
     <td><button (click)="editStudent(user)" class="btn btn-primary">edit</button><button (click)="delete(user.id)" class="btn btn-danger">delete</button></td>
 </tr>
 </table>
-<a [routerLink]="['/']" class="btn btn-secondary">Home</a>
-<a [routerLink]="['/componenet']" class="btn btn-secondary">Component</a>-->
-
-
-<router-outlet></router-outlet>
