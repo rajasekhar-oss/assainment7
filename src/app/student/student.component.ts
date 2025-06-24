@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 interface User {
-  id: string;
+  id?: string;
   name: string;
   age: number;
 }
@@ -19,15 +19,15 @@ interface User {
 })
 export class StudentComponent {
   users: User[] = [];
-  newUser: User = { id:'', name: '', age: 0 };
+  newUser: User = {name: '', age: 0 };
   title = 'app';
-  studentId: string = "";
+  studentId: string | undefined;
   isEditMode: boolean = false;
   // items = ['Angular', 'React', 'Vue'];
   constructor(private userService: SerService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.userService.getUsers("student").subscribe(
+    this.userService.getUsers("students").subscribe(
       (data) => {
         this.users = data;
       },
@@ -39,8 +39,9 @@ export class StudentComponent {
   addUser() {
 
     if (!this.newUser.name || !this.newUser.age) return;
+    const { id, ...userWithoutId } = this.newUser;
 
-    this.userService.postUser("student", this.newUser).subscribe(
+    this.userService.postUser("students", userWithoutId).subscribe(
       (user) => {
         this.users.push(user);       // add to local list
         this.newUser = { id:'', name: '', age: 0 }; // reset form
@@ -57,11 +58,11 @@ export class StudentComponent {
     if (this.isEditMode) {
       // Edit existing user
       const obj = {
-        id: this.studentId,
+        id: this.studentId!,
         name: this.newUser.name,
         age: this.newUser.age
       };
-      this.userService.putUser("student", obj).subscribe(
+      this.userService.putUser("students", obj).subscribe(
         (res: any) => {
           const index = this.users.findIndex(u => u.id === this.studentId);
           if (index !== -1) {
@@ -82,7 +83,7 @@ export class StudentComponent {
     this.isEditMode = false;
   }
   delete(id:string){
-    this.userService.deleteuser("student", id).subscribe({
+    this.userService.deleteuser("students", id).subscribe({
       next:(res)=>{
         console.log(res);
         this.users = this.users.filter(user => user.id !== id); 

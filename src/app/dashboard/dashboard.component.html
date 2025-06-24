@@ -1,0 +1,25 @@
+<p>dashboard works!</p>
+<ol>
+<li [routerLink]="['home1']">home 1</li>
+<li [routerLink]="['home2']">home 2</li>
+</ol>
+<div>
+    <input type="text" placeholder="enter">
+    <button (click)="getvalue('value')">add</button>
+</div>
+<form #userdata="ngForm" (ngSubmit)="consoledata(userdata)">
+    <input type="text" placeholder="firstName" [(ngModel)]="user.firstname" name="firstName" required #username="ngModel" >
+    <div *ngIf="username.invalid && username.touched" style="color:red;">
+    Username is required
+  </div>
+    <input type="text" placeholder="Last name" [(ngModel)]="user.lastname" name="lastname">
+    <input type="email" placeholder="email" [(ngModel)]="user.email" name="email">
+    <input type="number" placeholder="age" [(ngModel)]="user.age" name="age" required #age="ngModel">
+    <div *ngIf="age.invalid && age.touched" style="color:red;">
+    Username is required
+  </div>
+    
+    <button class="btn btn-success" type="submit" [disabled]="!(userdata.valid)">sucess</button>
+</form>
+
+<router-outlet></router-outlet>

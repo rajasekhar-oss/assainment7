@@ -1,43 +1,35 @@
 {
-  "student": [
+  "students": [
     {
-      "id": "s1",
-      "name": "Rahul",
-      "age": 20,
-      "course": "Angular"
+      "id": "a332",
+      "name": "Ravi",
+      "age": 21
     },
     {
-      "id": "s2",
-      "name": "Priya",
-      "age": 22,
-      "course": "React"
-    },
-    {
-      "id": "s3",
-      "name": "Kiran",
-      "age": 21,
-      "course": "Vue"
+      "id": "52ee",
+      "name": "Raj",
+      "age": 19
     }
   ],
-  "teacher": [
+  "teachers": [
     {
-      "id": "",
-      "name": "add",
-      "age": 45
+      "id": "5ec9",
+      "name": "ram",
+      "age": 29
     }
   ],
   "mentors": [
     {
-      "id": "",
-      "name": "Anil",
-      "age": 23
+      "id": "5b11",
+      "name": "Sekhar",
+      "age": 30
     }
   ],
   "techstaff": [
     {
-      "id": "ts1",
-      "name": "Ravi",
-      "age": 40
+      "id": "b679",
+      "name": "sam",
+      "age": 34
     }
   ]
 }

@@ -20,7 +20,7 @@ export class SerService {
   getUsers(resource:string): Observable<User[]>{
     return this.http.get<User[]>(`${this.apiUrl}/${resource}`);
   }
-  postUser(resource:string, user: User): Observable<User> {
+  postUser(resource:string, user: Omit<User, 'id'>): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/${resource}`, user);
   }
   deleteuser(resource:string, id:string){

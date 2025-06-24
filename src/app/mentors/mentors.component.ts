@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 // Define the User interface
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   age: number;
 }
@@ -20,9 +20,9 @@ export interface User {
 })
 export class MentorsComponent {
   users: User[] = [];
-  newUser: User = { id:'', name: '', age: 0 };
+  newUser: User = {name: '', age: 0 };
   title = 'app';
-  studentId: string = "";
+  studentId: string | undefined;
   isEditMode: boolean = false;
   // items = ['Angular', 'React', 'Vue'];
   constructor(private userService: SerService, private http: HttpClient) { }
@@ -40,8 +40,9 @@ export class MentorsComponent {
   addUser() {
 
     if (!this.newUser.name || !this.newUser.age) return;
+    const { id, ...userWithoutId } = this.newUser;
 
-    this.userService.postUser("mentors", this.newUser).subscribe(
+    this.userService.postUser("mentors", userWithoutId).subscribe(
       (user) => {
         this.users.push(user);       // add to local list
         this.newUser = { id:'', name: '', age: 0 }; // reset form
@@ -49,7 +50,7 @@ export class MentorsComponent {
       (error) => console.error("Post error", error)
     );
   }
-  editStudent(user: User) {
+  editmentor(user: User) {
     this.newUser = { ...user };
     this.studentId = user.id;
     this.isEditMode = true;
@@ -58,7 +59,7 @@ export class MentorsComponent {
     if (this.isEditMode) {
       // Edit existing user
       const obj = {
-        id: this.studentId,
+        id: this.studentId!,
         name: this.newUser.name,
         age: this.newUser.age
       };

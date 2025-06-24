@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 // Define the User interface
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   age: number;
 }
@@ -24,13 +24,13 @@ export class TeacherComponent {
   teacher: User[] = [];
   newUser: User = { id:'', name: '', age: 0 };
   title = 'app';
-  studentId: string = "";
+  studentId: string | undefined;
   isEditMode: boolean = false;
   // items = ['Angular', 'React', 'Vue'];
   constructor(private userService: SerService, private http: HttpClient, private route:Router) { }
 
   ngOnInit() {
-    this.userService.getUsers("teacher").subscribe(
+    this.userService.getUsers("teachers").subscribe(
       (data) => {
         this.teacher = data;
       },
@@ -42,8 +42,9 @@ export class TeacherComponent {
   addUser() {
 
     if (!this.newUser.name || !this.newUser.age) return;
+    const { id, ...userWithoutId } = this.newUser;
 
-    this.userService.postUser("teacher", this.newUser).subscribe(
+    this.userService.postUser("teachers", userWithoutId).subscribe(
       (user) => {
         this.teacher.push(user);       // add to local list
         this.newUser = { id:'', name: '', age: 0 }; // reset form
@@ -60,11 +61,11 @@ export class TeacherComponent {
     if (this.isEditMode) {
       // Edit existing user
       const obj = {
-        id: this.studentId,
+        id: this.studentId!,
         name: this.newUser.name,
         age: this.newUser.age
       };
-      this.userService.putUser("teacher", obj).subscribe(
+      this.userService.putUser("teachers", obj).subscribe(
         (res: any) => {
           const index = this.teacher.findIndex(u => u.id === this.studentId);
           if (index !== -1) {
@@ -85,7 +86,7 @@ export class TeacherComponent {
     this.isEditMode = false;
   }
   delete(id:string){
-    this.userService.deleteuser("teacher", id).subscribe({
+    this.userService.deleteuser("teachers", id).subscribe({
       next:(res)=>{
         console.log(res);
         this.teacher = this.teacher.filter(user => user.id !== id); 
